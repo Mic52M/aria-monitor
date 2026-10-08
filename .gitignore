@@ -1,0 +1,12 @@
+# Secrets: config.py holds Wi-Fi / MQTT / email / Telegram credentials
+firmware/config.py
+
+# MicroPython firmware images (download separately)
+micropython-esp32s3-*.bin
+
+# Local tooling
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+SETUP_CHECKLIST.md
