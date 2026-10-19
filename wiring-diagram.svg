@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 560" font-family="system-ui,Arial,sans-serif">
-  <rect width="860" height="560" fill="#0f1115"/>
-  <text x="430" y="34" fill="#e6e6e6" font-size="22" font-weight="700" text-anchor="middle">Aria Monitor: wiring diagram</text>
-  <text x="430" y="58" fill="#8b93a7" font-size="13" text-anchor="middle">Four shared lines: every device connects to the same four lines</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 0 940 560" font-family="system-ui,Arial,sans-serif">
+  <rect x="-80" width="940" height="560" fill="#0f1115"/>
+  <text x="390" y="34" fill="#e6e6e6" font-size="22" font-weight="700" text-anchor="middle">Aria Monitor: wiring diagram</text>
+  <text x="390" y="58" fill="#8b93a7" font-size="13" text-anchor="middle">Four shared lines: every device connects to the same four lines</text>
 
   <!-- Buses -->
   <g stroke-width="6" stroke-linecap="round">
@@ -25,10 +25,10 @@
     <text x="210" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">(off the breadboard)</text>
     <!-- pins -->
     <g font-size="11" text-anchor="middle" fill="#c9cede">
-      <text x="150" y="405">3V3</text>
-      <text x="190" y="405">GND</text>
-      <text x="230" y="405">8</text>
-      <text x="270" y="405">9</text>
+      <text x="150" y="430">3V3</text>
+      <text x="190" y="430">GND</text>
+      <text x="230" y="430">8</text>
+      <text x="270" y="430">9</text>
     </g>
     <!-- wires -->
     <line x1="150" y1="410" x2="150" y2="110" stroke="#ef4444" stroke-width="3"/>
@@ -43,10 +43,10 @@
     <text x="450" y="470" fill="#e6e6e6" font-size="16" font-weight="700" text-anchor="middle">OLED DISPLAY</text>
     <text x="450" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">GND VCC SCL SDA</text>
     <g font-size="11" text-anchor="middle" fill="#c9cede">
-      <text x="390" y="405">GND</text>
-      <text x="430" y="405">VCC</text>
-      <text x="470" y="405">SCL</text>
-      <text x="510" y="405">SDA</text>
+      <text x="390" y="430">GND</text>
+      <text x="430" y="430">VCC</text>
+      <text x="470" y="430">SCL</text>
+      <text x="510" y="430">SDA</text>
     </g>
     <line x1="390" y1="410" x2="390" y2="170" stroke="#e5e7eb" stroke-width="3"/>
     <line x1="430" y1="410" x2="430" y2="110" stroke="#ef4444" stroke-width="3"/>
@@ -58,12 +58,12 @@
   <g>
     <rect x="600" y="410" width="180" height="110" rx="10" fill="#1a1e27" stroke="#3a4152"/>
     <text x="690" y="470" fill="#e6e6e6" font-size="16" font-weight="700" text-anchor="middle">SCD41 SENSOR</text>
-    <text x="690" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">follow the labels on the module</text>
+    <text x="690" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">match the pin labels</text>
     <g font-size="11" text-anchor="middle" fill="#c9cede">
-      <text x="630" y="405">VCC</text>
-      <text x="670" y="405">GND</text>
-      <text x="710" y="405">SDA</text>
-      <text x="750" y="405">SCL</text>
+      <text x="630" y="430">VCC</text>
+      <text x="670" y="430">GND</text>
+      <text x="710" y="430">SDA</text>
+      <text x="750" y="430">SCL</text>
     </g>
     <line x1="630" y1="410" x2="630" y2="110" stroke="#ef4444" stroke-width="3"/>
     <line x1="670" y1="410" x2="670" y2="170" stroke="#e5e7eb" stroke-width="3"/>
@@ -71,5 +71,5 @@
     <line x1="750" y1="410" x2="750" y2="290" stroke="#22c55e" stroke-width="3"/>
   </g>
 
-  <text x="430" y="548" fill="#8b93a7" font-size="12" text-anchor="middle">Same color = same line. VCC/3V3 = red, GND = white, SDA = blue, SCL = green</text>
+  <text x="390" y="548" fill="#8b93a7" font-size="12" text-anchor="middle">Same color = same line. VCC/3V3 = red, GND = white, SDA = blue, SCL = green</text>
 </svg>
