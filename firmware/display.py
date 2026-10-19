@@ -1,5 +1,5 @@
-# Wrapper per display OLED SSD1306 128x64 su I2C.
-# Richiede il modulo ssd1306.py (lo installiamo con mip, vedi README).
+# Thin wrapper around an SSD1306 128x64 OLED on I2C.
+# Requires the ssd1306 module (installed with mip, see the README).
 try:
     import ssd1306
 except ImportError:
@@ -23,7 +23,7 @@ class Display:
         o.text("Aria Monitor", 0, 0)
         o.text("CO2: {} ppm".format(co2), 0, 16)
         o.text("Temp: {:.1f}C".format(temp), 0, 28)
-        o.text("Umid: {:.0f}%".format(rh), 0, 40)
+        o.text("Hum: {:.0f}%".format(rh), 0, 40)
         o.text(status, 0, 54)
         o.show()
 

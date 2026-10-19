@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 560" font-family="system-ui,Arial,sans-serif">
   <rect width="860" height="560" fill="#0f1115"/>
-  <text x="430" y="34" fill="#e6e6e6" font-size="22" font-weight="700" text-anchor="middle">Aria Monitor — schema di collegamento</text>
-  <text x="430" y="58" fill="#8b93a7" font-size="13" text-anchor="middle">4 "linee condivise": ogni dispositivo si aggancia alle stesse 4 linee</text>
+  <text x="430" y="34" fill="#e6e6e6" font-size="22" font-weight="700" text-anchor="middle">Aria Monitor: wiring diagram</text>
+  <text x="430" y="58" fill="#8b93a7" font-size="13" text-anchor="middle">Four shared lines: every device connects to the same four lines</text>
 
   <!-- Buses -->
   <g stroke-width="6" stroke-linecap="round">
@@ -11,10 +11,10 @@
     <line x1="70" y1="290" x2="790" y2="290" stroke="#22c55e"/>
   </g>
   <g font-size="14" font-weight="700" text-anchor="end">
-    <text x="60" y="115" fill="#ef4444">3V3  (rail rosso +)</text>
-    <text x="60" y="175" fill="#e5e7eb">GND  (rail blu −)</text>
-    <text x="60" y="235" fill="#3b82f6">SDA  (una colonna)</text>
-    <text x="60" y="295" fill="#22c55e">SCL  (una colonna)</text>
+    <text x="60" y="115" fill="#ef4444">3V3  (+ rail)</text>
+    <text x="60" y="175" fill="#e5e7eb">GND  (- rail)</text>
+    <text x="60" y="235" fill="#3b82f6">SDA  (one column)</text>
+    <text x="60" y="295" fill="#22c55e">SCL  (one column)</text>
   </g>
 
   <!-- Helper: device boxes at bottom, pins rise to buses -->
@@ -22,7 +22,7 @@
   <g>
     <rect x="120" y="410" width="180" height="110" rx="10" fill="#1a1e27" stroke="#3a4152"/>
     <text x="210" y="470" fill="#e6e6e6" font-size="16" font-weight="700" text-anchor="middle">ESP32-S3</text>
-    <text x="210" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">(fuori dalla breadboard)</text>
+    <text x="210" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">(off the breadboard)</text>
     <!-- pins -->
     <g font-size="11" text-anchor="middle" fill="#c9cede">
       <text x="150" y="405">3V3</text>
@@ -40,7 +40,7 @@
   <!-- Display -->
   <g>
     <rect x="360" y="410" width="180" height="110" rx="10" fill="#1a1e27" stroke="#3a4152"/>
-    <text x="450" y="470" fill="#e6e6e6" font-size="16" font-weight="700" text-anchor="middle">DISPLAY OLED</text>
+    <text x="450" y="470" fill="#e6e6e6" font-size="16" font-weight="700" text-anchor="middle">OLED DISPLAY</text>
     <text x="450" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">GND VCC SCL SDA</text>
     <g font-size="11" text-anchor="middle" fill="#c9cede">
       <text x="390" y="405">GND</text>
@@ -54,11 +54,11 @@
     <line x1="510" y1="410" x2="510" y2="230" stroke="#3b82f6" stroke-width="3"/>
   </g>
 
-  <!-- Sensore -->
+  <!-- Sensor -->
   <g>
     <rect x="600" y="410" width="180" height="110" rx="10" fill="#1a1e27" stroke="#3a4152"/>
-    <text x="690" y="470" fill="#e6e6e6" font-size="16" font-weight="700" text-anchor="middle">SENSORE SCD41</text>
-    <text x="690" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">leggi le SIGLE sul modulo</text>
+    <text x="690" y="470" fill="#e6e6e6" font-size="16" font-weight="700" text-anchor="middle">SCD41 SENSOR</text>
+    <text x="690" y="492" fill="#8b93a7" font-size="12" text-anchor="middle">follow the labels on the module</text>
     <g font-size="11" text-anchor="middle" fill="#c9cede">
       <text x="630" y="405">VCC</text>
       <text x="670" y="405">GND</text>
@@ -71,5 +71,5 @@
     <line x1="750" y1="410" x2="750" y2="290" stroke="#22c55e" stroke-width="3"/>
   </g>
 
-  <text x="430" y="548" fill="#8b93a7" font-size="12" text-anchor="middle">Regola: stesso colore = stessa linea. VCC/3V3 = rosso · GND = blu/nero · SDA = blu-chiaro · SCL = verde</text>
+  <text x="430" y="548" fill="#8b93a7" font-size="12" text-anchor="middle">Same color = same line. VCC/3V3 = red, GND = white, SDA = blue, SCL = green</text>
 </svg>

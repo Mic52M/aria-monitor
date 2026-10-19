@@ -1,4 +1,4 @@
-# Invio email tramite Resend API (HTTPS). Nessuna libreria extra: usa urequests.
+# Email alerts through the Resend API (HTTPS). No extra library: uses urequests.
 import urequests
 
 
@@ -22,4 +22,4 @@ def send(cfg, subject, text):
         print("email:", r.status_code)
         r.close()
     except Exception as e:
-        print("email err:", e)
+        print("email error:", e)

@@ -1,5 +1,5 @@
-# Integrazione Home Assistant via MQTT Discovery.
-# Richiede umqtt.simple (lo installiamo con mip, vedi README).
+# Home Assistant integration via MQTT Discovery.
+# Requires umqtt.simple (installed with mip, see the README).
 import json
 
 try:
@@ -13,7 +13,7 @@ class HomeAssistant:
         self.cfg = cfg
         self.client = None
         self.dev_id = cfg.DEVICE_NAME.replace("-", "_")
-        self.base = "aria/{}".format(self.dev_id)   # topic di stato
+        self.base = "aria/{}".format(self.dev_id)   # state topic prefix
         self.available = False
 
     def connect(self):
@@ -59,8 +59,8 @@ class HomeAssistant:
 
     def _publish_discovery(self):
         self._discovery_one("co2", "CO2", "ppm", "carbon_dioxide")
-        self._discovery_one("temperature", "Temperatura", "°C", "temperature")
-        self._discovery_one("humidity", "Umidita", "%", "humidity")
+        self._discovery_one("temperature", "Temperature", "°C", "temperature")
+        self._discovery_one("humidity", "Humidity", "%", "humidity")
 
     def publish_state(self, co2, temp, rh):
         if not self.available:

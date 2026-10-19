@@ -1,10 +1,10 @@
-# Driver minimale per Sensirion SCD41 (CO2 / temperatura / umidita') in MicroPython.
-# Comunicazione I2C, indirizzo 0x62.
+# Minimal MicroPython driver for the Sensirion SCD41 (CO2 / temperature / humidity).
+# Talks I2C at address 0x62.
 import time
 
 _ADDR = 0x62
 
-# Comandi (16 bit, big-endian)
+# Commands (16-bit, big-endian)
 _CMD_START_PERIODIC   = b"\x21\xb1"
 _CMD_READ_MEAS        = b"\xec\x05"
 _CMD_STOP_PERIODIC    = b"\x3f\x86"
@@ -43,13 +43,13 @@ class SCD41:
         time.sleep_ms(500)
 
     def set_altitude(self, meters):
-        # Va impostata mentre la misura periodica e' ferma.
+        # Must be set while periodic measurement is stopped.
         self._send(_CMD_SET_ALTITUDE, int(meters))
         time.sleep_ms(1)
 
     def set_temperature_offset(self, celsius):
-        # Offset di temperatura (default fabbrica 4C). Alza -> temperatura riportata piu' bassa.
-        # Va impostato a misura ferma. Corregge anche l'umidita'.
+        # Temperature offset (factory default 4 C). A higher value lowers the reported temperature.
+        # Must be set while measurement is stopped. Also corrects the derived humidity.
         val = int(celsius * 65535 / 175)
         self._send(_CMD_SET_TEMP_OFFSET, val)
         time.sleep_ms(1)
@@ -63,11 +63,11 @@ class SCD41:
         time.sleep_ms(1)
         raw = self.i2c.readfrom(_ADDR, 3)
         val = (raw[0] << 8) | raw[1]
-        # pronto se gli ultimi 11 bit non sono tutti 0
+        # ready when the lowest 11 bits are not all zero
         return (val & 0x07FF) != 0
 
     def read(self):
-        """Ritorna (co2_ppm, temp_c, umidita_pct) oppure None se CRC errato."""
+        """Return (co2_ppm, temp_c, humidity_pct), or None if a CRC check fails."""
         self._send(_CMD_READ_MEAS)
         time.sleep_ms(1)
         d = self.i2c.readfrom(_ADDR, 9)

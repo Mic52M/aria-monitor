@@ -1,4 +1,4 @@
-# Notifiche Telegram via HTTPS.
+# Telegram notifications over HTTPS.
 import urequests
 
 
@@ -13,4 +13,4 @@ def send(cfg, text):
         )
         r.close()
     except Exception as e:
-        print("Telegram err:", e)
+        print("Telegram error:", e)

@@ -3,7 +3,7 @@
 import socket
 import json
 
-_PAGE = """<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">
+_PAGE = """<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aria Monitor</title>
 <style>
@@ -33,33 +33,33 @@ _PAGE = """<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">
 </style></head><body><div class="wrap">
  <div class="top">
    <h1>Aria Monitor</h1>
-   <div class="upd"><span id="dot" class="dot"></span><span id="upd">connessione...</span></div>
+   <div class="upd"><span id="dot" class="dot"></span><span id="upd">connecting...</span></div>
  </div>
 
  <div class="hero">
-   <div class="hlabel">Anidride carbonica</div>
+   <div class="hlabel">Carbon dioxide</div>
    <div class="co2" id="co2wrap"><span id="co2">--</span> <small>ppm</small></div>
    <span class="badge" id="badge">--</span>
    <svg id="spark" viewBox="0 0 320 90" preserveAspectRatio="none"></svg>
  </div>
 
  <div class="grid">
-   <div class="card"><div class="l">Temperatura</div><div class="v"><span id="t">--</span>&deg;C</div></div>
-   <div class="card"><div class="l">Umidita</div><div class="v"><span id="rh">--</span>%</div></div>
+   <div class="card"><div class="l">Temperature</div><div class="v"><span id="t">--</span>&deg;C</div></div>
+   <div class="card"><div class="l">Humidity</div><div class="v"><span id="rh">--</span>%</div></div>
  </div>
 
- <button class="btn" id="btn" onclick="refresh(true)">Aggiorna ora</button>
- <div class="foot">Aggiornamento automatico ogni 5s &middot; avviso email sopra <span id="al">--</span> ppm</div>
+ <button class="btn" id="btn" onclick="refresh(true)">Refresh now</button>
+ <div class="foot">Auto-refresh every 5 s &middot; email alert above <span id="al">--</span> ppm</div>
 </div>
 <script>
 function color(co2,warn,alarm){
- if(co2>=alarm) return ['#f43f5e','rgba(244,63,94,.15)','#f43f5e','AERARE SUBITO'];
- if(co2>=warn)  return ['#f59e0b','rgba(245,158,11,.15)','#f59e0b','Aria mediocre'];
- return ['#22c55e','rgba(34,197,94,.15)','#22c55e','Aria buona'];
+ if(co2>=alarm) return ['#f43f5e','rgba(244,63,94,.15)','#f43f5e','Ventilate now'];
+ if(co2>=warn)  return ['#f59e0b','rgba(245,158,11,.15)','#f59e0b','Air getting stale'];
+ return ['#22c55e','rgba(34,197,94,.15)','#22c55e','Air is good'];
 }
 async function refresh(manual){
  const btn=document.getElementById('btn');
- if(manual){btn.disabled=true;btn.textContent='Aggiorno...';}
+ if(manual){btn.disabled=true;btn.textContent='Refreshing...';}
  try{
   const r=await fetch('/data',{cache:'no-store'});const d=await r.json();
   document.getElementById('co2').textContent=d.co2;
@@ -69,7 +69,7 @@ async function refresh(manual){
   const c=color(d.co2,d.warn,d.alarm);
   document.getElementById('co2').style.color=c[0];
   const b=document.getElementById('badge');
-  b.textContent=d.status&&d.status!=='Aria buona'?d.status:c[3];
+  b.textContent=(d.status==='Awaiting sensor'||d.status==='starting')?d.status:c[3];
   b.style.color=c[2];b.style.background=c[1];
   const h=d.history||[];
   if(h.length>1){
@@ -78,13 +78,13 @@ async function refresh(manual){
    document.getElementById('spark').innerHTML='<polyline fill="none" stroke="'+c[0]+'" stroke-width="2.5" stroke-linejoin="round" points="'+pts+'"/>';
   }
   const now=new Date();
-  document.getElementById('upd').textContent='aggiornato '+now.toLocaleTimeString('it-IT');
+  document.getElementById('upd').textContent='updated '+now.toLocaleTimeString();
   document.getElementById('dot').className='dot';
  }catch(e){
-  document.getElementById('upd').textContent='riconnessione...';
+  document.getElementById('upd').textContent='reconnecting...';
   document.getElementById('dot').className='dot off';
  }
- if(manual){btn.disabled=false;btn.textContent='Aggiorna ora';}
+ if(manual){btn.disabled=false;btn.textContent='Refresh now';}
 }
 refresh(false);setInterval(()=>refresh(false),5000);
 </script></body></html>"""
@@ -95,7 +95,7 @@ class WebServer:
         self.cfg = cfg
         self.history = []
         self.history_len = history_len
-        self.latest = {"co2": 0, "temp": 0.0, "rh": 0.0, "status": "avvio"}
+        self.latest = {"co2": 0, "temp": 0.0, "rh": 0.0, "status": "starting"}
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.bind(("0.0.0.0", 80))

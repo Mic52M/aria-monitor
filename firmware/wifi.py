@@ -21,4 +21,4 @@ def connect(ssid, password, hostname="aria-monitor", timeout=20, static=None):
             if time.time() - t0 > timeout:
                 raise OSError("WiFi timeout")
             time.sleep_ms(200)
-    return wlan.ifconfig()[0]   # ritorna l'IP
+    return wlan.ifconfig()[0]   # return the IP address
